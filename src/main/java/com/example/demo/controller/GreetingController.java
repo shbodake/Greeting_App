@@ -5,11 +5,24 @@ import java.util.concurrent.atomic.AtomicLong;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.dto.UserDto;
 import com.example.demo.model.Greeting;
 import com.example.demo.service.IGreetingService;
+
+/**
+ * @RestController
+ * @RequestMapping: mapping web requests onto methods in request-handling
+ * classes with flexible method signatures.
+ * @GetMapping: mapping HTTP GET requests onto specific handler methods
+ * @RequestParam: method parameter should be bound to a web request parameter.
+ * @PathVariable: method parameter should be bound to a URI template variable.
+ * Supported for RequestMapping annotated handler methods.
+ */
 
 @RestController
 public class GreetingController {
@@ -48,5 +61,10 @@ public class GreetingController {
     @GetMapping("greeting/service")
     public Greeting greeting() {
         return greetingService.greetingMessage();
+    }
+    
+    @PostMapping("/post")
+    public String greetingMessage(@RequestBody UserDto userDto) {
+        return greetingService.greetingMessageByName(userDto);
     }
 }

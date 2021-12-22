@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -107,5 +108,14 @@ public class GreetingController {
 	@PutMapping("/editmessage")
 	public Greeting editMessage(Greeting greeting) {
 		return this.greetingService.editMessage(greeting);
+	}
+	
+
+	/**
+	 * Call method to delete message by message Id
+	 */
+	@DeleteMapping("/service/{messageId}")
+	public Greeting deleteMessage(@PathVariable String messageId) {
+		return greetingService.deleteMessage(Long.parseLong(messageId));
 	}
 }

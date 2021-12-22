@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
+import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +16,7 @@ import com.example.demo.dto.UserDto;
 import com.example.demo.model.Greeting;
 import com.example.demo.repository.IGreetingRepository;
 import com.example.demo.service.IGreetingService;
+
 
 /**
  * @RestController
@@ -33,7 +34,7 @@ public class GreetingController {
 	private static final String template = "Hello, %s!";
     private final AtomicLong counter = new AtomicLong();
 
-    /*
+    /*---___
      *curl localhost:8080/greeting
      @return={id =1 , content="hello world!"}
      * curl localhost:8080/greeting?name=sayali
@@ -87,9 +88,16 @@ public class GreetingController {
 		return greetingService.greetingMessageByName(userDto);
 	}
 	
-	@GetMapping("/service/{messId}")
-	public Greeting findById(@PathVariable String messId) {
-		return this.greetingService.findById(Long.parseLong(messId));
+	@GetMapping("/service/{messageId}")
+	public Greeting findById(@PathVariable String messageId) {
+		return this.greetingService.findById(Long.parseLong(messageId));
 	}
-    
+	
+	/**
+	 * Call method to list all the messages
+	 */
+	@GetMapping("/greetinglist")
+	public List<Greeting> getAllGreetings() {
+		return greetingService.getAllGreetings();
+	}
 }

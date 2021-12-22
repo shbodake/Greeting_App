@@ -33,4 +33,12 @@ public class GreetingService implements IGreetingService {
 	     modelMapper.map(userDto, user);
 	        return ("Hello " + user.getFirstName() + " " + user.getLastName());
 	    }
+	 
+	 /**
+	  * Call method to find the message by message Id
+	  */
+	@Override
+	public Greeting findById(long messageId) {
+		return greetingRepository.findById(messageId).get();
+	}
 }

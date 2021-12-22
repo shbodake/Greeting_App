@@ -87,6 +87,9 @@ public class GreetingController {
 		return greetingService.greetingMessageByName(userDto);
 	}
 	
-    
+	@GetMapping("/service/{messId}")
+	public Greeting findById(@PathVariable String messId) {
+		return this.greetingService.findById(Long.parseLong(messId));
+	}
     
 }

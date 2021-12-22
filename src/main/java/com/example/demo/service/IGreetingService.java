@@ -7,4 +7,5 @@ import com.example.demo.model.Greeting;
 public interface IGreetingService {
 	Greeting greetingMessage();
 	String greetingMessageByName(UserDto userDto);
+	Greeting findById(long messId);
 }

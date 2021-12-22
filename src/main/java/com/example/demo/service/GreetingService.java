@@ -52,4 +52,12 @@ public class GreetingService implements IGreetingService {
 		return greetingRepository.findAll();
 	}
 	
+	/**
+	 * Call method to edit message
+	 */
+	@Override
+	public Greeting editMessage(Greeting greeting) {
+		return greetingRepository.save(new Greeting(3,"Hello Sayali"));
+	}
+	
 }

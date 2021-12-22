@@ -100,4 +100,12 @@ public class GreetingController {
 	public List<Greeting> getAllGreetings() {
 		return greetingService.getAllGreetings();
 	}
+	
+	/**
+	 * Call method to edit message
+	 */
+	@PutMapping("/editmessage")
+	public Greeting editMessage(Greeting greeting) {
+		return this.greetingService.editMessage(greeting);
+	}
 }
